@@ -53,12 +53,6 @@ public class Main {
                 showBoard(board);
                 validMove = false;
 
-                // Toggle Between Players
-                if (moveCount == 1 || moveCount == 3 || moveCount == 5 || moveCount == 7) {
-                    playerMark = "O";
-                } else {
-                    playerMark = "X";
-                }
 
                 // Checking for wins or ties
                 if (moveCount > 4)
@@ -66,17 +60,26 @@ public class Main {
 
                     if((gameOver = isWin(playerMark)) == true)
                     {
-                        System.out.println("Congratulations, player " + playerMark + " you won!!!");
+                        System.out.println("\nCongratulations, player " + playerMark + " you won!!!");
                     }
                     else if (moveCount > 7)
                     {
-                        if (true == isTie(board))
+                        if ((gameOver = isTie(board)) == true || moveCount == 8)
                         {
-                            System.out.println("It's a tie!!!");
+                            System.out.println("\nIt's a tie!!!");
                             gameOver = true;
                         }
                     }
                 }
+
+                // Toggle Between Players
+                if (moveCount == 1 || moveCount == 3 || moveCount == 5 || moveCount == 7) {
+                    playerMark = "O";
+                } else {
+                    playerMark = "X";
+                }
+
+
             }while (!gameOver);
 
             playAgain = SafeInputFileCopy.getYNConfirm (in, "\nWould you like to play again?");
@@ -202,9 +205,9 @@ public class Main {
                 return false;
             }
         }
-        else if (board[0][3].equals("X") || board[1][1].equals("X") || board[3][0].equals("X"))
+        else if (board[0][2].equals("X") || board[1][1].equals("X") || board[2][0].equals("X"))
         {
-            if (!board[0][3].equals("O") || !board[1][1].equals("O") || !board[3][0].equals("O"))
+            if (!board[0][2].equals("O") || !board[1][1].equals("O") || !board[2][0].equals("O"))
             {
                 return false;
             }
